@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.operatormanager.user.mapper.OrderUploadMapper"> 
+	
+	<select id="listPager" resultType="com.operatormanager.user.entity.OrderUpload">
+        select * from order_upload where 1=1 
+        <if test="platform!=null and  platform != ''">
+            AND platform LIKE concat('%',#{platform},'%')
+        </if> 
+        <if test=" storeName !=null and  storeName != '' ">
+            AND store_name LIKE concat('%',#{storeName},'%')
+        </if>
+         <if test=" accountId>0 ">
+            AND account_id = #{accountId}
+        </if> 
+         <if test=" orderNo>0 ">
+            AND order_no =#{orderNo}
+        </if> 
+         <if test=" payMoney>0 ">
+            AND pay_money =#{payMoney}
+        </if> 
+         <if test=" customerName !=null and  customerName != '' ">
+            AND customer_name LIKE concat('%',#{customerName},'%')
+        </if> 
+         <if test=" commission>0 ">
+            AND commission =#{commission}
+        </if> 
+         <if test=" startOperatingTime !=null and  startOperatingTime != '' ">
+            AND operating_time &gt;= #{startOperatingTime}
+        </if> 
+         <if test=" endOperatingTime !=null and  endOperatingTime != '' ">
+            AND operating_time &lt;= #{endOperatingTime}
+        </if> 
+           ORDER BY operating_time DESC
+    </select>
+	
+	
+	
+	
+</mapper>

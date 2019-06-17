@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds"
+	debug="false">
+	<contextName>managersys</contextName>
+	
+	<appender name="consoleDev"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<!--展示格式 layout -->
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>
+				<pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+			</pattern>
+		</layout>
+	</appender>
+	
+	<appender name="consoleProfile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+		</filter>
+		<File>yz.log</File>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>managersys-%d{yyyy-MM-dd}.log</FileNamePattern>
+			<maxHistory>90</maxHistory>
+			<totalSizeCap>1GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<!--指定最基础的日志输出级别 --> 
+	<root level="error">
+		<!--appender将会添加到这个loger -->
+		<appender-ref ref="consoleProfile" />
+		<appender-ref ref="consoleDev" />
+	</root>
+</configuration>

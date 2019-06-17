@@ -1,0 +1,40 @@
+
+      
+server:
+  context-path: /
+#spring
+spring:
+  devtools:
+    restart:
+      enabled: false
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 20MB
+  mvc:
+    view:
+      suffix: .jsp
+      prefix: /WEB-INF/views/
+  # MYSQL DATABASE CONFIG
+  datasource: 
+    url: jdbc:mysql://rm-2zei4uu7xky9r3t2l.mysql.rds.aliyuncs.com:3306/wl_education?tinyInt1isBit=false&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    username: ike
+    password: IKE1234++..++
+    platform: mysql
+    initialization-mode: always
+    continue-on-error: true
+
+ 
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  configuration:
+    call-setters-on-nulls: true
+
+logging:
+  config: classpath:logging-profile.xml
